@@ -5,7 +5,7 @@ function Skills() {
   const [skills, setSkills] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/profile')
+    axios.get('https://paulprofile-production.up.railway.app/api/profile')
       .then(res => setSkills(res.data.skills))
       .catch(err => console.error(err))
   }, [])

@@ -6,7 +6,7 @@ function About() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/profile')
+    axios.get('https://paulprofile-production.up.railway.app/api/profile')
       .then(res => {
         setProfile(res.data)
         setLoading(false)

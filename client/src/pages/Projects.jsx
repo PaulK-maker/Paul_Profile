@@ -5,7 +5,7 @@ function Projects() {
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/profile')
+    axios.get('https://paulprofile-production.up.railway.app/api/profile')
       .then(res => setProjects(res.data.projects))
       .catch(err => console.error(err))
   }, [])

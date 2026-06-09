@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Profile = require('../models/Profile');
 
-// GET /api/profile
 router.get('/', async (req, res) => {
   try {
     const profile = await Profile.findOne();
