@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import axios from 'axios'
+
+const API_URL = import.meta.env.VITE_API_URL
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -7,15 +10,26 @@ function Contact() {
     message: ''
   })
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState(false)
+  const [sending, setSending] = useState(false)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-    setSubmitted(true)
+    setSending(true)
+    setError(false)
+    try {
+      await axios.post(`${API_URL}/api/contact`, formData)
+      setSubmitted(true)
+    } catch (err) {
+      console.error(err)
+      setError(true)
+    } finally {
+      setSending(false)
+    }
   }
 
   if (submitted) {
@@ -71,9 +85,10 @@ function Contact() {
           />
         </div>
 
-        <button onClick={handleSubmit} style={styles.button}>
-          Send Message →
+        <button onClick={handleSubmit} style={styles.button} disabled={sending}>
+          {sending ? 'Sending...' : 'Send Message →'}
         </button>
+        {error && <p style={{ color: '#e53e3e', marginTop: '1rem' }}>Failed to send. Please try again.</p>}
       </div>
 
       {/* Direct contact info */}

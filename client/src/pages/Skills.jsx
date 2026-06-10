@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+const API_URL = import.meta.env.VITE_API_URL
+
 function Skills() {
   const [skills, setSkills] = useState([])
 
   useEffect(() => {
-    axios.get('https://paulprofile-production.up.railway.app/api/profile')
+    axios.get(`${API_URL}/api/profile`)
       .then(res => setSkills(res.data.skills))
       .catch(err => console.error(err))
   }, [])

@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+const API_URL = import.meta.env.VITE_API_URL
+
 function Projects() {
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
-    axios.get('https://paulprofile-production.up.railway.app/api/profile')
+    axios.get(`${API_URL}/api/profile`)
       .then(res => setProjects(res.data.projects))
       .catch(err => console.error(err))
   }, [])

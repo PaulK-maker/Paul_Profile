@@ -15,6 +15,7 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/api/profile', require('./routes/profile'));
+app.use('/api/contact', require('./routes/contact'));
 
 app.get('/', (req, res) => {
   res.send('Paul Karanja API is running!');
