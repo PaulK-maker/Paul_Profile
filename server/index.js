@@ -7,11 +7,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://paul-profile-ashen.vercel.app'
-  ]
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(express.json());
 
 app.use('/api/profile', require('./routes/profile'));
